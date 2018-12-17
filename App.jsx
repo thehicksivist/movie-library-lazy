@@ -55,6 +55,25 @@ movieRouter.route('/movies')
     });
 
 movieRouter.route('/movies/:movieId')
+    .delete(function (req, res) {
+        Movie.findById(req.params.movieId, function (err, movie) {
+            if (err)
+                res.status(500).send(err);
+            else {
+                if (movie) {
+                    movie.remove(function (remErr) {
+                        if (remErr)
+                            res.status(500).send(remErr);
+                        else
+                            res.status(204);
+                    });
+                }
+                else {
+                    res.status(500).send('Did not get movie to delete');
+                }
+            }
+        })
+    })
     .get(function (req, res) {
         Movie.findById(req.params.movieId, function (err, movie) {
             if (err) {
