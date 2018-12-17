@@ -1,0 +1,25 @@
+{
+  "name": "movie-library-lazy",
+  "version": "1.0.0",
+  "description": "Lazy implementation - not modularised",
+  "main": "App.jsx",
+  "scripts": {
+    "test": "mocha",
+    "start": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/janelbrandon/movie-library-lazy.git"
+  },
+  "author": "Janel Brandon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janelbrandon/movie-library-lazy/issues"
+  },
+  "homepage": "https://github.com/janelbrandon/movie-library-lazy#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0"
+  }
+}
