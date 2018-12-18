@@ -65,7 +65,7 @@ movieRouter.route('/movies/:movieId')
                         if (remErr)
                             res.status(500).send(remErr);
                         else
-                            res.status(204);
+                            res.status(204).send('removed');
                     });
                 }
                 else {
