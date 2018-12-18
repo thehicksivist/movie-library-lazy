@@ -2,7 +2,7 @@
   "name": "movie-library-lazy",
   "version": "1.0.0",
   "description": "Lazy implementation - not modularised",
-  "main": "App.jsx",
+  "main": "app.js",
   "scripts": {
     "test": "mocha",
     "start": "npm start"
