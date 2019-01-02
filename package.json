@@ -4,7 +4,7 @@
   "description": "Lazy implementation - not modularised",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha -R spec",
     "start": "npm start"
   },
   "repository": {
@@ -20,6 +20,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.0"
+    "mongoose": "^5.4.0",
+    "should": "^13.2.3",
+    "sinon": "^7.2.2"
   }
 }

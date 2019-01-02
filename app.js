@@ -1,7 +1,6 @@
 const express = require('express'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
-
+    bodyParser = require('body-parser')
 
 // Connect to database
 let db;
@@ -19,11 +18,7 @@ else {
     console.log(`Connected to db at ${connectString}`);
 }
 
-
 let app = express();
-
-let movieRouter = express.Router();
-
 
 // Use bodyParser.json
 app.use(bodyParser.json());
@@ -32,59 +27,7 @@ app.use(bodyParser.json());
 // Bring in the movie model
 let Movie = require('./models/movieModel');
 
-movieRouter.route('/movies')
-    .post(function (req, res) {
-        let movie = new Movie(req.body);
-        movie.save();
-        res.status(201).send(movie);
-    })
-    .get(function (req, res) {
-        // Return a list of all movies
-        let query = {};
-        if (req.query.genre) {
-            query.genre = req.query.genre;
-        }
-
-        Movie.find(query, function (err, movies) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.json(movies);
-            }
-        });
-    });
-
-movieRouter.route('/movies/:movieId')
-    .delete(function (req, res) {
-        Movie.findById(req.params.movieId, function (err, movie) {
-            if (err)
-                res.status(500).send(err);
-            else {
-                if (movie) {
-                    movie.remove(function (remErr) {
-                        if (remErr)
-                            res.status(500).send(remErr);
-                        else
-                            res.status(204).send('removed');
-                    });
-                }
-                else {
-                    res.status(500).send('Did not get movie to delete');
-                }
-            }
-        })
-    })
-    .get(function (req, res) {
-        Movie.findById(req.params.movieId, function (err, movie) {
-            if (err) {
-                res.status(500).send(err);
-            } else if (movie) {
-                res.json(movie);
-            } else {
-                res.status(404).send('Movie not found');
-            }
-        })
-    });
+let movieRouter = require('./routes/movieRoutes')(Movie)
 
 app.use('/api/', movieRouter);
 
